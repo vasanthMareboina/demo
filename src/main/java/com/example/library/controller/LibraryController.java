@@ -1,6 +1,7 @@
 package com.example.library.controller;
 
 import com.example.library.DemoApplication;
+import com.example.library.customexception.NotFoundException;
 import com.example.library.dto.AuthorDto;
 import com.example.library.dto.BookDto;
 import com.example.library.dto.UserDto;
@@ -63,10 +64,12 @@ public class LibraryController {
 
     }
     @GetMapping(value ="/authors/{id}")
-    public ResponseEntity<AuthorDto> getAuthorById(@PathVariable Integer authorId){
+    public ResponseEntity<AuthorDto> getAuthorById(@PathVariable Integer authorId) throws NotFoundException{
         logger.info("Starting  getAuthorById() methode");
-        //Integer authorId = Integer.parseInt(id);
         Author author = authorService.getAuthorById(authorId);
+        if(author == null){
+            throw new NotFoundException("Author not found with id "+authorId.toString());
+        }
         AuthorDto authorDto = new AuthorDto(author.getAuthorId(),author.getName(),author.getBook());
         logger.info(" getAuthorById() methode ended");
         return ResponseEntity.ok().body(authorDto);
