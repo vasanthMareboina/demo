@@ -2,7 +2,6 @@ package com.example.library.service;
 
 import com.example.library.dto.UserDto;
 import com.example.library.dto.BookDto;
-import com.example.library.entity.Author;
 import com.example.library.entity.Book;
 import com.example.library.entity.User;
 import com.example.library.repository.BookRepository;

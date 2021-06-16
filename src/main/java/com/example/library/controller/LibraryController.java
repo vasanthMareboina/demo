@@ -1,6 +1,6 @@
 package com.example.library.controller;
 
-import com.example.library.DemoApplication;
+
 import com.example.library.customexception.NotFoundException;
 import com.example.library.dto.AuthorDto;
 import com.example.library.dto.BookDto;
@@ -16,8 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +87,7 @@ public class LibraryController {
     public ResponseEntity<List<BookDto>> getAllBooks(){
         logger.info("Starting  getAllBooks() methode");
         List<Book> bookList = bookService.showAllBooks();
-        List<BookDto> bookDtos = new ArrayList<BookDto>();
+        List<BookDto> bookDtos = new ArrayList<>();
 
         for(Book book:bookList){
             BookDto bookDto = new BookDto(book.getBookId(),book.getName(),book.getDescription(),book.getAuthorId());
@@ -111,7 +110,7 @@ public class LibraryController {
     public ResponseEntity<List<UserDto>> getAllUsers(){
         logger.info("Starting  getAllUsers() methode");
         List<User> userList= userService.getAllUsers();
-        List<UserDto> userDtos = new ArrayList<UserDto>();
+        List<UserDto> userDtos = new ArrayList<>();
         for(User user:userList){
             UserDto userDto = new UserDto(user.getUserId(),user.getName(),user.getBook());
             userDtos.add(userDto);
