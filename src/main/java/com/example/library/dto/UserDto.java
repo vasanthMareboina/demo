@@ -17,9 +17,6 @@ public class UserDto {
         this.name = name;
     }
 
-    public Integer getUserId() {
-        return UserId;
-    }
 
     public void setUserId(Integer userId) {
         UserId = userId;

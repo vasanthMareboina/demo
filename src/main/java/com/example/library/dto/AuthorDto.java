@@ -18,9 +18,6 @@ public class AuthorDto {
         this.name = name;
     }
 
-    public Integer getAuthorId() {
-        return authorId;
-    }
 
     public void setAuthorId(Integer authorId) {
         this.authorId = authorId;
