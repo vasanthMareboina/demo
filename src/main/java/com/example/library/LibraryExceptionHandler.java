@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class LibraryExceptionHandler {
     @ExceptionHandler
     ResponseEntity<LibraryErrorResponse>  handleException(NotFoundException e){
-        LibraryErrorResponse error = new LibraryErrorResponse();
+        var error = new LibraryErrorResponse();
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setMessage(e.getMessage());
         error.setTime(System.currentTimeMillis());
@@ -20,7 +20,7 @@ public class LibraryExceptionHandler {
     }
     @ExceptionHandler
     ResponseEntity<LibraryErrorResponse>  handleException(Exception e){
-        LibraryErrorResponse error = new LibraryErrorResponse();
+        var error = new LibraryErrorResponse();
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage(e.getMessage());
         error.setTime(System.currentTimeMillis());

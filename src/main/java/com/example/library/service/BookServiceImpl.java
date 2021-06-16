@@ -20,7 +20,7 @@ public class BookServiceImpl implements BookService{
     @Override
     public Integer addBook(BookDto book) {
         logger.info("Starting  addBook() methode");
-        Book bookFromDb = new Book();
+        var bookFromDb = new Book();
         bookFromDb.setName(book.getName());
         bookFromDb.setDescription(book.getDescription());
         bookFromDb.setAuthorId(book.getAuthorId());

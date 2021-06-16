@@ -37,7 +37,7 @@ public class LibraryController {
     @PostMapping(value = "/authors")
     public ResponseEntity<AuthorDto> addAuthor(@RequestBody AuthorDto author) {
         logger.info("Starting  addAuthor() methode");
-        Integer id = authorService.addAuthor(author);
+        var id = authorService.addAuthor(author);
         author.setAuthorId(id);
         logger.info("addAuthor() methode ended");
         return ResponseEntity.ok().body(author);
@@ -47,7 +47,7 @@ public class LibraryController {
     public ResponseEntity<List<AuthorDto>>  getAllAuthors(){
         logger.info("Starting  getAllAuthors() methode");
         List<Author> list = authorService.getAllAuthors();
-        List<AuthorDto> authorDtos= new ArrayList<AuthorDto>();
+        List<AuthorDto> authorDtos= new ArrayList<>();
 
         for(Author author:list){
             AuthorDto authorDto = new AuthorDto(author.getAuthorId(),author.getName(),author.getBook());
@@ -60,7 +60,7 @@ public class LibraryController {
     @GetMapping(value ="/authors/{id}")
     public ResponseEntity<AuthorDto> getAuthorById(@PathVariable Integer authorId) throws NotFoundException{
         logger.info("Starting  getAuthorById() methode");
-        Author author = authorService.getAuthorById(authorId);
+        var author = authorService.getAuthorById(authorId);
         if(author == null){
             throw new NotFoundException("Author not found with id "+authorId.toString());
         }
@@ -72,7 +72,7 @@ public class LibraryController {
     @PostMapping(value = "/books")
     public ResponseEntity<BookDto> addBook(@RequestBody BookDto book){
         logger.info("Starting  addBook() methode");
-        Integer id = bookService.addBook(book);
+        var id = bookService.addBook(book);
         book.setBookIdId(id);
         logger.info(" addBook() methode ended");
         return ResponseEntity.ok().body(book);
@@ -95,7 +95,7 @@ public class LibraryController {
     @PostMapping(value = "/users")
     public ResponseEntity<UserDto> addUser(@RequestBody UserDto user){
         logger.info("Starting  addUser() methode");
-        User userFromDb = userService.addUser(user);
+        var userFromDb = userService.addUser(user);
         user.setUserId(userFromDb.getUserId());
         logger.info(" addUser() methode ended");
         return ResponseEntity.ok().body(user);
@@ -117,9 +117,9 @@ public class LibraryController {
     @GetMapping(value = "/users/{id}")
      public ResponseEntity<UserDto> getUserById(@PathVariable Integer id){
         logger.info("Starting  getUserById() methode");
-        User user = userService.getUserById(id);
+        var user = userService.getUserById(id);
 
-        UserDto userDto = new UserDto(user.getUserId(),user.getName(),user.getBook());
+        var userDto = new UserDto(user.getUserId(),user.getName(),user.getBook());
         logger.info(" getUserById() methode ended");
         return ResponseEntity.ok().body(userDto);
     }
@@ -127,8 +127,8 @@ public class LibraryController {
     @PutMapping(value ="/subscribe")
     public ResponseEntity<BookDto> subscribedBooks(@RequestBody BookDto book){
         logger.info("Starting  subscribedBooks() methode");
-        Book savedBook=userService.subscribeBook(book);
-        BookDto bookDto = new BookDto(savedBook.getBookId(),savedBook.getName(),savedBook.getDescription(),savedBook.getAuthorId());
+        var savedBook=userService.subscribeBook(book);
+        var bookDto = new BookDto(savedBook.getBookId(),savedBook.getName(),savedBook.getDescription(),savedBook.getAuthorId());
         logger.info(" subscribedBooks() methode ended");
         return ResponseEntity.ok().body(bookDto);
     }

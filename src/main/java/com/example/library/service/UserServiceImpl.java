@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public User addUser(UserDto user) {
         logger.info("Starting  addUser() methode");
-        User userFromDb = new User();
+        var userFromDb = new User();
         userFromDb.setName(user.getName());
         userFromDb = userRepository.save(userFromDb);
         logger.info(" addUser() methode ended");
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
     public User getUserById(Integer id) {
         logger.info("Starting  getUserById() methode");
         try{
-            User user = userRepository.getById(id);
+            var user = userRepository.getById(id);
             logger.info(" getUserById() methode ended");
             return user;
         }
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public Book subscribeBook(BookDto book) {
         logger.info("Starting  subscribeBook() methode");
-        Book bookFromDb = new Book();
+        var bookFromDb = new Book();
         bookFromDb.setAuthorId(book.getAuthorId());
         bookFromDb.setBookId(book.getBookId());
         bookFromDb.setDescription(book.getDescription());

@@ -21,7 +21,7 @@ public class AuthorServiceImpl implements AuthorService {
     public Integer addAuthor(AuthorDto author) {
 
         logger.info("Starting  addAuthor() methode");
-        Author authorFromDb   = new Author();
+        var authorFromDb   = new Author();
         authorFromDb.setName(author.getName());
          authorFromDb = authorRepository.save(authorFromDb);
         logger.info("addAuthor() methode ended");
@@ -40,7 +40,7 @@ public class AuthorServiceImpl implements AuthorService {
     public Author getAuthorById(Integer id) {
         logger.info("Starting  getAuthorById() methode");
         try{
-            Author author= authorRepository.getById(id);
+            var author= authorRepository.getById(id);
             logger.info("getAuthorById() methode ended");
             return author;
         }
