@@ -26,6 +26,10 @@ public class UserDto {
         return book;
     }
 
+    public Integer getUserId() {
+        return UserId;
+    }
+
     public void setBook(List<Book> book) {
         this.book = book;
     }

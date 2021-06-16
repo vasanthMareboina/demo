@@ -50,7 +50,7 @@ public class LibraryController {
         List<AuthorDto> authorDtos= new ArrayList<>();
 
         for(Author author:list){
-            AuthorDto authorDto = new AuthorDto(author.getAuthorId(),author.getName(),author.getBook());
+            var authorDto = new AuthorDto(author.getAuthorId(),author.getName(),author.getBook());
             authorDtos.add(authorDto);
         }
         logger.info("getAllAuthors() methode ended");
@@ -64,7 +64,7 @@ public class LibraryController {
         if(author == null){
             throw new NotFoundException("Author not found with id "+authorId.toString());
         }
-        AuthorDto authorDto = new AuthorDto(author.getAuthorId(),author.getName(),author.getBook());
+        var authorDto = new AuthorDto(author.getAuthorId(),author.getName(),author.getBook());
         logger.info(" getAuthorById() methode ended");
         return ResponseEntity.ok().body(authorDto);
     }
@@ -85,7 +85,7 @@ public class LibraryController {
         List<BookDto> bookDtos = new ArrayList<>();
 
         for(Book book:bookList){
-            BookDto bookDto = new BookDto(book.getBookId(),book.getName(),book.getDescription(),book.getAuthorId());
+            var bookDto = new BookDto(book.getBookId(),book.getName(),book.getDescription(),book.getAuthorId());
             bookDtos.add(bookDto);
         }
         logger.info(" getAllBooks() methode ended");
@@ -107,7 +107,7 @@ public class LibraryController {
         List<User> userList= userService.getAllUsers();
         List<UserDto> userDtos = new ArrayList<>();
         for(User user:userList){
-            UserDto userDto = new UserDto(user.getUserId(),user.getName(),user.getBook());
+            var userDto = new UserDto(user.getUserId(),user.getName(),user.getBook());
             userDtos.add(userDto);
         }
         logger.info(" getAllUsers() methode ended");
