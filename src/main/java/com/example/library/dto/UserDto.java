@@ -5,7 +5,7 @@ import java.util.List;
 
 public class UserDto {
 
-    private Integer UserId;
+    private Integer userId;
     private String name;
     private List<Book> book;
 
@@ -19,7 +19,7 @@ public class UserDto {
 
 
     public void setUserId(Integer userId) {
-        UserId = userId;
+        userId = userId;
     }
 
     public List<Book> getBook() {
@@ -27,7 +27,7 @@ public class UserDto {
     }
 
     public Integer getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setBook(List<Book> book) {
@@ -35,7 +35,7 @@ public class UserDto {
     }
 
     public UserDto(Integer userId, String name, List<Book> book) {
-        UserId = userId;
+        userId = userId;
         this.name = name;
         this.book = book;
     }

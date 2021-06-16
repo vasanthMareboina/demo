@@ -9,7 +9,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="userId",updatable = false,nullable = false)
-    private Integer UserId;
+    private Integer userId;
     private String name;
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="user_Id")
@@ -24,7 +24,7 @@ public class User {
     }
 
     public Integer getUserId() {
-        return UserId;
+        return userId;
     }
 
     public List<Book> getBook() {
