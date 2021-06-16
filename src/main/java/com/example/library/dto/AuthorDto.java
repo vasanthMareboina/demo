@@ -1,8 +1,6 @@
 package com.example.library.dto;
 
 import com.example.library.entity.Book;
-
-import javax.persistence.*;
 import java.util.List;
 
 public class AuthorDto {

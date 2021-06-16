@@ -1,11 +1,9 @@
 package com.example.library.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
@@ -29,12 +27,9 @@ public class Author {
         this.name = name;
     }
 
+
     public Integer getAuthorId() {
         return authorId;
-    }
-
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
     }
 
     public List<Book> getBook() {

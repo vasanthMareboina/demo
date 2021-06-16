@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -17,7 +16,6 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
     private AuthorRepository authorRepository;
-
 
     @Override
     public Integer addAuthor(AuthorDto author) {
@@ -38,7 +36,6 @@ public class AuthorServiceImpl implements AuthorService {
         return list;
     }
 
-
     @Override
     public Author getAuthorById(Integer id) {
         logger.info("Starting  getAuthorById() methode");
@@ -50,7 +47,6 @@ public class AuthorServiceImpl implements AuthorService {
         catch (IllegalArgumentException e){
             throw new IllegalArgumentException("No Author found with id "+id);
         }
-
     }
 
 }

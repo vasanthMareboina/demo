@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public User addUser(UserDto user) {
         logger.info("Starting  addUser() methode");
-
         User userFromDb = new User();
         userFromDb.setName(user.getName());
         userFromDb = userRepository.save(userFromDb);
