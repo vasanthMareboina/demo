@@ -19,7 +19,7 @@ public class UserDto {
 
 
     public void setUserId(Integer userId) {
-        userId = userId;
+        this.userId = userId;
     }
 
     public List<Book> getBook() {
@@ -35,7 +35,7 @@ public class UserDto {
     }
 
     public UserDto(Integer userId, String name, List<Book> book) {
-        userId = userId;
+        this.userId = userId;
         this.name = name;
         this.book = book;
     }
