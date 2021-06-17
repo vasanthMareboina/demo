@@ -1,17 +1,15 @@
 package com.example.demo;
 
-import com.example.demo.controller.LibraryControllerTest;
-import com.example.library.controller.LibraryController;
+
+import com.example.library.DemoApplication;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@SpringBootTest(classes = LibraryControllerTest.class)
-@ActiveProfiles("test")
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = DemoApplication.class)
 class DemoApplicationTests {
 
 	@Test
@@ -20,7 +18,8 @@ class DemoApplicationTests {
 	}
 
 	private void doNotThrowException(){
-		//This method will never throw exception
+
 	}
+
 
 }

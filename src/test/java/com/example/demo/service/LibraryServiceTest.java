@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.library.DemoApplication;
 import com.example.library.dto.AuthorDto;
 import com.example.library.dto.BookDto;
 import com.example.library.entity.Author;
@@ -13,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.lang.Nullable;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.stream.Collectors;
@@ -22,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = DemoApplication.class)
 public class LibraryServiceTest {
 
     @Autowired
@@ -32,7 +34,7 @@ public class LibraryServiceTest {
     private BookService bookService;
 
     @MockBean
-    private AuthorRepository theAuthorRepository;
+    private AuthorRepository authorRepository;
 
     @MockBean
     private BookRepository bookRepository;
@@ -46,7 +48,7 @@ public class LibraryServiceTest {
 
         Author author = new Author();
         author.setName("Vasanth");
-        when(theAuthorRepository.findAll()).thenReturn(Stream.of(author).collect(Collectors.toList()));
+        when(authorRepository.findAll()).thenReturn(Stream.of(author).collect(Collectors.toList()));
         assertEquals(1, authorService.getAllAuthors().size());
     }
 
@@ -55,7 +57,7 @@ public class LibraryServiceTest {
         Integer authorId = 1;
         Author author = new Author();
         author.setAuthorId(authorId);
-        when(theAuthorRepository.findById(authorId)).thenReturn(java.util.Optional.of(author));
+        when(authorRepository.findById(authorId)).thenReturn(java.util.Optional.of(author));
         assertEquals(author, authorService.getAuthorById(authorId));
     }
 
@@ -66,8 +68,8 @@ public class LibraryServiceTest {
         Author author = new Author();
         author.setName("Ashok");
         author.setAuthorId(1);
-        when(theAuthorRepository.save(author)).thenReturn(author);
-        assertEquals(java.util.Optional.of(1),authorService.addAuthor(authorDto));
+        when(authorRepository.save(author)).thenReturn(author);;
+        assertEquals(1, java.util.Optional.ofNullable(authorService.addAuthor(authorDto)));
     }
 
 
@@ -75,11 +77,12 @@ public class LibraryServiceTest {
     public void addBooksTest(){
         Book book = new Book();
         book.setName("Java");
-        book.setBookId(1);
+        Integer id =1;
+        book.setBookId(id);
         BookDto bookDto = new BookDto();
         bookDto.setName("Java");
-        when(bookRepository.save(book)).thenReturn(book);
-        assertEquals(java.util.Optional.of(1),bookService.addBook(bookDto));
+        when(bookRepository.save(book)).thenReturn(Stream.of(book).findFirst().get());
+        assertEquals(id,bookService.addBook(bookDto));
     }
 
     @Test
@@ -87,8 +90,9 @@ public class LibraryServiceTest {
         Book book = new Book();
         book.setName("Java");
         book.setBookId(1);
+        long id =1;
         book.setDescription("Contains all the information till Java 8");
         when(bookRepository.findAll()).thenReturn(Stream.of(book).collect(Collectors.toList()));
-        assertEquals(1,bookService.showAllBooks());
+        assertEquals(id, (long) (bookService.showAllBooks().size()));
     }
 }
