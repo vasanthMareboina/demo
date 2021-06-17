@@ -39,4 +39,8 @@ public class AuthorDto {
         this.name = name;
         this.book = book;
     }
+
+    public  AuthorDto(){
+
+    }
 }

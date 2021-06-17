@@ -1,56 +1,54 @@
 package com.example.demo.controller;
 
+import com.example.library.controller.LibraryController;
 import com.example.library.dto.AuthorDto;
 import com.example.library.entity.Book;
+import com.example.library.repository.AuthorRepository;
 import com.example.library.service.AuthorService;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.client.RestTemplate;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LibraryControllerTest {
 
-    @InjectMocks
-    AuthorService authorService;
+        @InjectMocks
+        LibraryController libraryController;
 
-    protected MockMvc mvc;
+        @Mock
+        AuthorRepository authorRepository;
 
+        protected MockMvc mvc;
 
-    @Test
-    public void testGetAuthorById()  {
+        @LocalServerPort
+        int randomServerPort;
 
-        List<Book> books = new ArrayList<>();
-        var book = new Book();
-        book.setAuthorId(1);
-        book.setBookId(1);
-        book.setDescription("Contains all the features till version 8");
-        book.setName("JAVA");
-        books.add(book);
-        var authorDto = new AuthorDto(1,"vasanth",books);
-        var id = authorService.addAuthor(authorDto);
-         var author = authorService.getAuthorById(id);
-        Assert.assertEquals("vasanth", author.getName());
+        @Test
+        void testGetAuthorListSuccess() throws URISyntaxException {
 
-    }
+            RestTemplate restTemplate=new RestTemplate();
 
-    @Test
-    public void testAddAuthor(){
-        List<Book> books = new ArrayList<>();
-        var book = new Book();
-        book.setAuthorId(1);
-        book.setBookId(1);
-        book.setDescription("Contains all the features till version 8");
-        book.setName("JAVA");
-        books.add(book);
-        var authorDto = new AuthorDto(1,"vasanth",books);
-        var id = authorService.addAuthor(authorDto);
-        String status = null;
-        if(id > 0){
-             status = "Added Successfully";
+            final String baseUrl="http://localhost:"+randomServerPort+"/authors";
+
+            URI uri=new URI(baseUrl);
+
+            ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
+
+            Assert.assertEquals(200, result.getStatusCodeValue());
+
         }
-        Assert.assertEquals("Added Successfully", status);
-
-    }
 }

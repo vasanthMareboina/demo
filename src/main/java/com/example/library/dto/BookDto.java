@@ -22,6 +22,10 @@ public class BookDto {
         return name;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -36,5 +40,9 @@ public class BookDto {
         this.name = name;
         this.description = description;
         this.authorId = authorId;
+    }
+
+    public BookDto(){
+
     }
 }

@@ -28,6 +28,10 @@ public class Author {
     }
 
 
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
+
     public Integer getAuthorId() {
         return authorId;
     }
