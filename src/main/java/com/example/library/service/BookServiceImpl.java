@@ -18,15 +18,11 @@ public class BookServiceImpl implements BookService{
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public Integer addBook(BookDto book) {
+    public Integer addBook(Book book) {
         logger.info("Starting  addBook() methode");
-        var bookFromDb = new Book();
-        bookFromDb.setName(book.getName());
-        bookFromDb.setDescription(book.getDescription());
-        bookFromDb.setAuthorId(book.getAuthorId());
-        bookFromDb = bookRepository.save(bookFromDb);
+        book = bookRepository.save(book);
         logger.info(" addBook() methode ended");
-        return bookFromDb.getBookId();
+        return book.getBookId();
     }
 
     @Override

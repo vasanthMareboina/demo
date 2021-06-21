@@ -5,6 +5,15 @@ public class BookDto {
     private String name;
     private String description;
     private Integer authorId;
+    private Integer userId;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public Integer getAuthorId() {
         return authorId;

@@ -35,12 +35,17 @@ public class LibraryController {
     UserService userService;
 
     @PostMapping(value = "/authors")
-    public ResponseEntity<AuthorDto> addAuthor(@RequestBody AuthorDto author) {
+    public ResponseEntity<AuthorDto> addAuthor(@RequestBody AuthorDto authorDto) throws NullPointerException{
         logger.info("Starting  addAuthor() methode");
-        var id = authorService.addAuthor(author);
+        Author author = new Author();
+        author.setName(authorDto.getName());
+        var id= authorService.addAuthor(author);
+        if(id == null){
+            throw new NullPointerException("Error in adding the author");
+        }
         author.setAuthorId(id);
         logger.info("addAuthor() methode ended");
-        return ResponseEntity.ok().body(author);
+        return ResponseEntity.ok().body(authorDto);
     }
 
     @GetMapping(value = "/authors")
@@ -70,12 +75,16 @@ public class LibraryController {
     }
 
     @PostMapping(value = "/books")
-    public ResponseEntity<BookDto> addBook(@RequestBody BookDto book){
+    public ResponseEntity<BookDto> addBook(@RequestBody BookDto bookDto){
         logger.info("Starting  addBook() methode");
+        Book book = new Book();
+        book.setName(bookDto.getName());
+        book.setDescription(bookDto.getDescription());
+        book.setAuthorId(bookDto.getAuthorId());
         var id = bookService.addBook(book);
-        book.setBookIdId(id);
+        bookDto.setBookIdId(id);
         logger.info(" addBook() methode ended");
-        return ResponseEntity.ok().body(book);
+        return ResponseEntity.ok().body(bookDto);
     }
 
     @GetMapping(value = "/books")
@@ -93,12 +102,14 @@ public class LibraryController {
     }
 
     @PostMapping(value = "/users")
-    public ResponseEntity<UserDto> addUser(@RequestBody UserDto user){
+    public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto){
         logger.info("Starting  addUser() methode");
+        User user = new User();
+        user.setName(userDto.getName());
         var userFromDb = userService.addUser(user);
-        user.setUserId(userFromDb.getUserId());
+        userDto.setUserId(userFromDb.getUserId());
         logger.info(" addUser() methode ended");
-        return ResponseEntity.ok().body(user);
+        return ResponseEntity.ok().body(userDto);
     }
 
     @GetMapping(value = "/users")
@@ -125,10 +136,15 @@ public class LibraryController {
     }
 
     @PutMapping(value ="/subscribe")
-    public ResponseEntity<BookDto> subscribedBooks(@RequestBody BookDto book){
+    public ResponseEntity<BookDto> subscribedBooks(@RequestBody BookDto bookDto){
         logger.info("Starting  subscribedBooks() methode");
+        Book book = new Book();
+        book.setName(bookDto.getName());
+        book.setBookId(bookDto.getBookId());
+        book.setUserId(bookDto.getUserId());
+        book.setAuthorId(bookDto.getAuthorId());
+        book.setDescription(bookDto.getDescription());
         var savedBook=userService.subscribeBook(book);
-        var bookDto = new BookDto(savedBook.getBookId(),savedBook.getName(),savedBook.getDescription(),savedBook.getAuthorId());
         logger.info(" subscribedBooks() methode ended");
         return ResponseEntity.ok().body(bookDto);
     }

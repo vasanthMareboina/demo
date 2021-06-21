@@ -6,7 +6,7 @@ import com.example.library.dto.AuthorDto;
 import java.util.List;
 
 public interface AuthorService {
-    public Integer addAuthor(AuthorDto student);
+    public Integer addAuthor(Author authorDto);
     public List<Author>  getAllAuthors();
     public Author getAuthorById(Integer id);
 }

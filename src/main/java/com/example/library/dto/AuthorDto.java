@@ -1,5 +1,6 @@
 package com.example.library.dto;
 
+import com.example.library.entity.Author;
 import com.example.library.entity.Book;
 import java.util.List;
 
@@ -43,4 +44,26 @@ public class AuthorDto {
     public  AuthorDto(){
 
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Author author = (Author) o;
+
+        if (authorId != null ? !authorId.equals(author.getAuthorId()) : author.getAuthorId() != null) return false;
+        if (name != null ? !name.equals(author.getName()) : author.getName() != null) return false;
+        // if (book != null ? !book.equals(author.getBook()) : author.getBook() != null) return false;
+        return book != null ? book.equals(author.getBook()) : author.getBook() == null;
+        // return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = authorId != null ? authorId.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (book != null ? book.hashCode() : 0);
+        return result;
+    }
+
 }

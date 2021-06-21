@@ -25,13 +25,10 @@ public class UserServiceImpl implements UserService{
     UserRepository userRepository;
 
     @Override
-    public User addUser(UserDto user) {
-        logger.info("Starting  addUser() methode");
-        var userFromDb = new User();
-        userFromDb.setName(user.getName());
-        userFromDb = userRepository.save(userFromDb);
+    public User addUser(User user) {
+        user = userRepository.save(user);
         logger.info(" addUser() methode ended");
-        return userFromDb;
+        return user;
     }
 
     @Override
@@ -56,15 +53,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Book subscribeBook(BookDto book) {
+    public Book subscribeBook(Book book) {
         logger.info("Starting  subscribeBook() methode");
-        var bookFromDb = new Book();
-        bookFromDb.setAuthorId(book.getAuthorId());
-        bookFromDb.setBookId(book.getBookId());
-        bookFromDb.setDescription(book.getDescription());
-        bookFromDb.setUserId(book.getBookId());
-        bookFromDb = bookRepository.save(bookFromDb);
+        book = bookRepository.save(book);
         logger.info(" subscribeBook() methode ended");
-        return bookFromDb;
+        return book;
     }
 }

@@ -18,14 +18,26 @@ public class AuthorServiceImpl implements AuthorService {
     private AuthorRepository authorRepository;
 
     @Override
-    public Integer addAuthor(AuthorDto author) {
+    public Integer addAuthor(Author author) {
 
         logger.info("Starting  addAuthor() methode");
         var authorFromDb   = new Author();
+
         authorFromDb.setName(author.getName());
-         authorFromDb = authorRepository.save(authorFromDb);
-        logger.info("addAuthor() methode ended");
-        return authorFromDb.getAuthorId();
+       // System.out.println(author.getName());
+         authorFromDb = authorRepository.save(author);
+         try{
+
+                 var id = authorFromDb.getAuthorId();
+                 logger.info("addAuthor() methode ended");
+                 return id;
+
+         }
+         catch (NullPointerException e){
+             throw new NullPointerException(e.getMessage());
+         }
+
+
     }
 
     @Override

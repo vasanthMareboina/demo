@@ -8,8 +8,8 @@ import com.example.library.entity.User;
 import java.util.List;
 
 public interface UserService {
-    public User addUser(UserDto user);
+    public User addUser(User user);
     public List<User> getAllUsers();
-    public Book subscribeBook(BookDto book);
+    public Book subscribeBook(Book book);
     public User getUserById(Integer id);
 }

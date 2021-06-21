@@ -39,4 +39,7 @@ public class UserDto {
         this.name = name;
         this.book = book;
     }
+    public UserDto(){
+
+    }
 }
