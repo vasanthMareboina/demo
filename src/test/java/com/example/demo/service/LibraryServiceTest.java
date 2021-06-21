@@ -32,7 +32,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DemoApplication.class)
-class LibraryServiceTest {
+public class LibraryServiceTest {
 
     @Autowired
     private AuthorService authorService;
