@@ -122,15 +122,6 @@ public class LibraryServiceTest {
         assertEquals(1, userService.getAllUsers().size());
     }
 
-//    @Test
-//    public void getUsersByIdTest() {
-//        Integer userId = 1;
-//        User user = new User();
-//        user.setName("Vasanth");
-//        user.setUserId(userId);
-//        when(authorRepository.findById(userId)).thenReturn(user);
-//        assertEquals(user, authorService.getAuthorById(userId));
-//    }
 
     @Test
     public void addUsersTest() {
