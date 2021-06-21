@@ -6,6 +6,7 @@ import com.example.library.controller.LibraryController;
 import com.example.library.repository.AuthorRepository;
 import com.example.library.service.AuthorService;
 
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -35,6 +36,11 @@ public class LibraryControllerTest {
 
         @LocalServerPort
         int randomServerPort;
+
+        @Test
+        void addAuthorsTest() {
+
+        }
 
 
 }

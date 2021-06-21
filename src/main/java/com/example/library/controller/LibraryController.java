@@ -144,7 +144,7 @@ public class LibraryController {
         book.setUserId(bookDto.getUserId());
         book.setAuthorId(bookDto.getAuthorId());
         book.setDescription(bookDto.getDescription());
-        book = userService.subscribeBook(book);
+        userService.subscribeBook(book);
         logger.info(" subscribedBooks() methode ended");
         return ResponseEntity.ok().body(bookDto);
     }

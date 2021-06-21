@@ -24,7 +24,6 @@ public class AuthorServiceImpl implements AuthorService {
         var authorFromDb   = new Author();
 
         authorFromDb.setName(author.getName());
-       // System.out.println(author.getName());
          authorFromDb = authorRepository.save(author);
          try{
 
