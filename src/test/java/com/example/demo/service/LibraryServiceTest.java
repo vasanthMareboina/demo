@@ -60,7 +60,7 @@ public class LibraryServiceTest {
 
 
     @Test
-    public void getAuthorsTest() {
+     void getAuthorsTest() {
 
         Author author = new Author();
         author.setName("Vasanth");
@@ -69,19 +69,11 @@ public class LibraryServiceTest {
         assertEquals(1, authorService.getAllAuthors().size());
     }
 
-//    @Test
-//    public void getAuthorsByIdTest() {
-//        Integer authorId = 1;
-//        Author author = new Author();
-//        author.setName("Vasanth");
-//        author.setAuthorId(authorId);
-//        when(authorRepository.findById(authorId)).thenReturn(java.util.Optional.of(author));
-//        assertEquals(author, authorService.getAuthorById(authorId));
-//    }
+
 
     @Test
-    public void addAuthorsTest() {
-        Author author = new Author();
+     void addAuthorsTest() {
+        var author = new Author();
         author.setName("Ashok");
         author.setAuthorId(1);
         Integer id =1;
@@ -93,8 +85,8 @@ public class LibraryServiceTest {
 
 
     @Test
-    public void addBooksTest(){
-        Book book = new Book();
+     void addBooksTest(){
+        var book = new Book();
         book.setName("Java");
         Integer id =1;
         book.setBookId(id);
@@ -103,8 +95,8 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void showAllBooksTest(){
-        Book book = new Book();
+     void showAllBooksTest(){
+        var book = new Book();
         book.setName("Java");
         book.setBookId(1);
         long id =1;
@@ -114,9 +106,9 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void getUsersTest() {
+     void getUsersTest() {
 
-        User user = new User();
+        var user = new User();
         user.setName("Vasanth");
         user.setUserId(1);
         when(userRepository.findAll()).thenReturn(Stream.of(user).collect(Collectors.toList()));
@@ -125,8 +117,8 @@ public class LibraryServiceTest {
 
 
     @Test
-    public void addUsersTest() {
-        User user = new User();
+     void addUsersTest() {
+        var user = new User();
         user.setName("Ashok");
         user.setUserId(1);
         Integer id =1;
@@ -135,9 +127,9 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void subscribeBookTest(){
+     void subscribeBookTest(){
 
-        Book book = new Book();
+        var book = new Book();
         book.setName("Java");
         book.setBookId(1);
         book.setUserId(1);
