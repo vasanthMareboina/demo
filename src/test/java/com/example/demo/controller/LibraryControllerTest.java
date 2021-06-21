@@ -18,6 +18,8 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.junit.Assert.assertEquals;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DemoApplication.class)
@@ -39,6 +41,7 @@ public class LibraryControllerTest {
 
         @Test
         void addAuthorsTest() {
+                assertEquals(1,1);
 
         }
 
