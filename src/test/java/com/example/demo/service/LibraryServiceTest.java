@@ -13,7 +13,8 @@ import com.example.library.repository.UserRepository;
 import com.example.library.service.AuthorService;
 import com.example.library.service.BookService;
 import com.example.library.service.UserService;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
