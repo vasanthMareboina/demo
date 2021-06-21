@@ -37,7 +37,7 @@ public class LibraryController {
     @PostMapping(value = "/authors")
     public ResponseEntity<AuthorDto> addAuthor(@RequestBody AuthorDto authorDto) throws NullPointerException{
         logger.info("Starting  addAuthor() methode");
-        Author author = new Author();
+        var author = new Author();
         author.setName(authorDto.getName());
         var id= authorService.addAuthor(author);
         if(id == null){
@@ -77,7 +77,7 @@ public class LibraryController {
     @PostMapping(value = "/books")
     public ResponseEntity<BookDto> addBook(@RequestBody BookDto bookDto){
         logger.info("Starting  addBook() methode");
-        Book book = new Book();
+        var book = new Book();
         book.setName(bookDto.getName());
         book.setDescription(bookDto.getDescription());
         book.setAuthorId(bookDto.getAuthorId());
@@ -104,7 +104,7 @@ public class LibraryController {
     @PostMapping(value = "/users")
     public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto){
         logger.info("Starting  addUser() methode");
-        User user = new User();
+        var user = new User();
         user.setName(userDto.getName());
         var userFromDb = userService.addUser(user);
         userDto.setUserId(userFromDb.getUserId());
@@ -138,13 +138,13 @@ public class LibraryController {
     @PutMapping(value ="/subscribe")
     public ResponseEntity<BookDto> subscribedBooks(@RequestBody BookDto bookDto){
         logger.info("Starting  subscribedBooks() methode");
-        Book book = new Book();
+        var book = new Book();
         book.setName(bookDto.getName());
         book.setBookId(bookDto.getBookId());
         book.setUserId(bookDto.getUserId());
         book.setAuthorId(bookDto.getAuthorId());
         book.setDescription(bookDto.getDescription());
-        var savedBook=userService.subscribeBook(book);
+        book = userService.subscribeBook(book);
         logger.info(" subscribedBooks() methode ended");
         return ResponseEntity.ok().body(bookDto);
     }
