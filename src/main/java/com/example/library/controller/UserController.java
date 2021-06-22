@@ -20,8 +20,6 @@ public class UserController {
 
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-
-
     @Autowired
     UserService userService;
     @PostMapping(value = "/users")
