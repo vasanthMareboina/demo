@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = DemoApplication.class)
-public class BookServiceTest {
+class BookServiceTest {
 
 
 

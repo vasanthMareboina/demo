@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 import static org.mockito.Mockito.when;
 @SpringBootTest(classes = DemoApplication.class)
 
-public class UserServiceTest {
+class UserServiceTest {
 
     @MockBean
     private BookRepository bookRepository;

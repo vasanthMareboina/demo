@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = DemoApplication.class)
-public class AuthorServiceTest {
+class AuthorServiceTest {
 
     @Autowired
     private AuthorService authorService;
