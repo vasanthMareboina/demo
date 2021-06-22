@@ -20,6 +20,7 @@
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.exclusions>
 			**/dto/**,
+			**/customexceptions/**,
 			**/jsp_pages/**,
 			**/entity/**,
 			**/DemoApplication.java
