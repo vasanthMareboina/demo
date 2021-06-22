@@ -45,10 +45,7 @@ public class BookServiceTest {
         var book = new Book();
         book.setName("Java");
         book.setBookId(1);
-
         book.setDescription("Contains all the information till Java 8");
-
-
         when(bookRepository.findAll()).thenReturn(Stream.of(book).collect(Collectors.toList()));
         Assertions.assertEquals(1, bookService.showAllBooks().size());
     }

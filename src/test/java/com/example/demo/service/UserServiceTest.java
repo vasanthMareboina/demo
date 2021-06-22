@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.library.DemoApplication;
+import com.example.library.entity.Author;
 import com.example.library.entity.Book;
 import com.example.library.entity.User;
 import com.example.library.repository.BookRepository;
@@ -49,6 +50,16 @@ public class UserServiceTest {
         user.setUserId(1);
         when(userRepository.findAll()).thenReturn(Stream.of(user).collect(Collectors.toList()));
         Assertions.assertEquals(1, userService.getAllUsers().size());
+    }
+
+    @Test
+    public void getUsersByIdTest() {
+
+        var user = new User();
+        user.setName("Vasanth");
+        user.setUserId(1);
+        when(userRepository.getById(1)).thenReturn(user);
+        Assertions.assertEquals(user, userService.getUserById(1));
     }
 
 

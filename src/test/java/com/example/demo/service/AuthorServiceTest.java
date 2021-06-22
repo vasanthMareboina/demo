@@ -13,7 +13,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.event.annotation.BeforeTestExecution;
+
 
 
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class AuthorServiceTest {
     public AuthorServiceTest() {
     }
 
-    @BeforeTestExecution
+
 
 
     @Test
@@ -47,6 +47,17 @@ public class AuthorServiceTest {
         when(authorRepository.findAll()).thenReturn(Stream.of(author).collect(Collectors.toList()));
         Assertions.assertEquals(1, authorService.getAllAuthors().size());
     }
+
+    @Test
+    public void getAuthorsByIdTest() {
+
+        var author = new Author();
+        author.setName("Vasanth");
+        author.setAuthorId(1);
+        when(authorRepository.getById(1)).thenReturn(author);
+        Assertions.assertEquals(author, authorService.getAuthorById(1));
+    }
+
 
     @Test
     public void addAuthorsTest() {
