@@ -23,6 +23,7 @@
 			**/customexceptions/**,
 			**/jsp_pages/**,
 			**/entity/**,
+			**/repository/**,
 			**/DemoApplication.java
 		</sonar.exclusions>
 	</properties>
