@@ -32,14 +32,11 @@ public class AuthorServiceTest {
     @MockBean
     private AuthorRepository authorRepository;
 
-    public AuthorServiceTest() {
-    }
-
 
 
 
     @Test
-     public void getAuthorsTest() {
+      void getAuthorsTest() {
 
         var author = new Author();
         author.setName("Vasanth");
@@ -49,7 +46,7 @@ public class AuthorServiceTest {
     }
 
     @Test
-    public void getAuthorsByIdTest() {
+     void getAuthorsByIdTest() {
 
         var author = new Author();
         author.setName("Vasanth");
@@ -60,7 +57,7 @@ public class AuthorServiceTest {
 
 
     @Test
-    public void addAuthorsTest() {
+     void addAuthorsTest() {
         var author = new Author();
         author.setName("Ashok");
         author.setAuthorId(1);

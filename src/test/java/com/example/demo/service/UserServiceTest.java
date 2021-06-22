@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.library.DemoApplication;
-import com.example.library.entity.Author;
 import com.example.library.entity.Book;
 import com.example.library.entity.User;
 import com.example.library.repository.BookRepository;
@@ -53,7 +52,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void getUsersByIdTest() {
+     void getUsersByIdTest() {
 
         var user = new User();
         user.setName("Vasanth");
