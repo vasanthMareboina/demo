@@ -27,6 +27,7 @@
 			**/DemoApplication.java
 		</sonar.exclusions>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
