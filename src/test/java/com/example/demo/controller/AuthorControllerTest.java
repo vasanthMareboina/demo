@@ -47,7 +47,6 @@ public class AuthorControllerTest {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-
         this.mockMvc = MockMvcBuilders.standaloneSetup(authorController).build();
 
     }
