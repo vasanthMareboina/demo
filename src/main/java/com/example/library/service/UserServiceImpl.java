@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService{
             return user;
         }
         catch (IllegalArgumentException e){
+            logger.debug("No User found with id "+id);
             throw new IllegalArgumentException("No User found with id "+id);
         }
     }

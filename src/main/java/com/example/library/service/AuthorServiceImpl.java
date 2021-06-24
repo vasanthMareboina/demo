@@ -51,6 +51,7 @@ public class AuthorServiceImpl implements AuthorService {
             return author;
         }
         catch (IllegalArgumentException e){
+            logger.debug("No Author found with id "+id);
             throw new IllegalArgumentException("No Author found with id "+id);
         }
     }
