@@ -84,4 +84,15 @@ class UserServiceTest {
         Mockito.when(bookRepository.save(book)).thenReturn(book);
         Assertions.assertEquals(book,userService.subscribeBook(book));
     }
+
+    @Test
+    void getUsersByIdErrorTest() {
+        try{
+            userService.getUserById(100);
+        }
+        catch (IllegalArgumentException e){
+            Assertions.assertTrue(e.getMessage().contains("No User found"));
+        }
+
+    }
 }

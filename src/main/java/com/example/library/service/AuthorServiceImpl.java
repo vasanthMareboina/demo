@@ -25,16 +25,11 @@ public class AuthorServiceImpl implements AuthorService {
 
         authorFromDb.setName(author.getName());
          authorFromDb = authorRepository.save(author);
-         try{
 
                  var id = authorFromDb.getAuthorId();
                  logger.info("addAuthor() methode ended");
                  return id;
 
-         }
-         catch (NullPointerException e){
-             throw new NullPointerException(e.getMessage());
-         }
 
 
     }

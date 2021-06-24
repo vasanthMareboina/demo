@@ -23,15 +23,13 @@ public class AuthorController {
 
 
     @PostMapping(value = "/authors")
-    public ResponseEntity<AuthorDto> addAuthor(@RequestBody AuthorDto authorDto) throws NullPointerException{
+    public ResponseEntity<AuthorDto> addAuthor(@RequestBody AuthorDto authorDto) {
         logger.info("Starting  addAuthor() methode");
         var author = new Author();
         author.setName(authorDto.getName());
         var id= authorService.addAuthor(author);
-        if(id == null){
-            throw new NullPointerException("Error in adding the author");
-        }
         author.setAuthorId(id);
+        authorDto.setAuthorId(id);
         logger.info("addAuthor() methode ended");
         return ResponseEntity.ok().body(authorDto);
     }
@@ -51,11 +49,11 @@ public class AuthorController {
 
     }
     @GetMapping(value ="/authors/{id}")
-    public ResponseEntity<AuthorDto> getAuthorById(@PathVariable Integer authorId) throws NotFoundException {
+    public ResponseEntity<AuthorDto> getAuthorById(@PathVariable Integer id) throws NotFoundException {
         logger.info("Starting  getAuthorById() methode");
-        var author = authorService.getAuthorById(authorId);
+        var author = authorService.getAuthorById(id);
         if(author == null){
-            throw new NotFoundException("Author not found with id "+authorId.toString());
+            throw new NotFoundException("Author not found with id "+id.toString());
         }
         var authorDto = new AuthorDto(author.getAuthorId(),author.getName(),author.getBook());
         logger.info(" getAuthorById() methode ended");

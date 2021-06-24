@@ -55,6 +55,18 @@ class AuthorServiceTest {
         Assertions.assertEquals(author, authorService.getAuthorById(1));
     }
 
+    @Test
+    void getAuthorsByIdErrorTest() {
+        try{
+             authorService.getAuthorById(100);
+        }
+        catch (IllegalArgumentException e){
+            Assertions.assertTrue(e.getMessage().contains("No Author found"));
+        }
+
+    }
+
+
 
     @Test
      void addAuthorsTest() {
