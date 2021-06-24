@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.library.DemoApplication;
 import com.example.library.controller.AuthorController;
+import com.example.library.customexception.NotFoundException;
 import com.example.library.dto.AuthorDto;
 import com.example.library.entity.Author;
 import com.example.library.service.AuthorService;
@@ -111,6 +112,38 @@ public class AuthorControllerTest {
                 .andExpect(jsonPath("$.authorId", Matchers.equalTo(1)))
                 .andExpect(jsonPath("$.name", Matchers.equalTo("name1")));
     }
+
+    @Test
+    void addAuthorsErrorTest() throws Exception{
+        RequestBuilder request = MockMvcRequestBuilders
+                .post("/authors")
+                .content("hello")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+
+        this.mockMvc.perform(request)
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void getAuthorsByIdErrorTest() throws Exception{
+        RequestBuilder request = MockMvcRequestBuilders
+                .get("/authors/100")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+
+
+        try{
+            this.mockMvc.perform(request)
+                    .andExpect(status().isBadRequest());
+        }
+        catch (Exception e){
+            Assertions.assertTrue(e.getMessage().contains("Author not found"));
+        }
+
+
+    }
+
 
 
 
