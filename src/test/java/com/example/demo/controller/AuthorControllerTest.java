@@ -5,11 +5,14 @@ import com.example.library.controller.AuthorController;
 import com.example.library.dto.AuthorDto;
 import com.example.library.entity.Author;
 import com.example.library.service.AuthorService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.annotation.Before;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -31,7 +34,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(classes = DemoApplication.class)
 public class AuthorControllerTest {
@@ -44,6 +47,8 @@ public class AuthorControllerTest {
     @Autowired
     private AuthorController authorController;
 
+    private static ObjectMapper mapper = new ObjectMapper();
+
     @BeforeEach
      void setup() {
         MockitoAnnotations.initMocks(this);
@@ -54,7 +59,7 @@ public class AuthorControllerTest {
     @Test
      void getAuthorsTest() throws Exception {
 
-        Author author = new Author();
+        var author = new Author();
         author.setAuthorId(1);
         author.setName("name1");
 
@@ -70,5 +75,43 @@ public class AuthorControllerTest {
                 .andExpect(content().json("[{authorId:1,name:name1,book:null}]"));
 
     }
+
+    @Test
+    void getAuthorsByIdTest() {
+
+        var author = new Author();
+        author.setName("name1");
+        author.setAuthorId(1);
+        when(authorService.getAuthorById(1)).thenReturn(
+                author);
+
+        RequestBuilder request = MockMvcRequestBuilders
+                .get("/authors/1");
+
+        try{
+            this.mockMvc.perform(request)
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andExpect(content().json("{authorId:1,name:name1,book:null}"));
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    @Test
+    void addAuthorsTest() throws Exception {
+        var author = new Author();
+        author.setName("name1");
+
+        Mockito.when(authorService.addAuthor(ArgumentMatchers.any())).thenReturn(1);
+        String json = mapper.writeValueAsString(author);
+        mockMvc.perform(MockMvcRequestBuilders.post("/authors").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8")
+                .content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andExpect(jsonPath("$.authorId", Matchers.equalTo(1)))
+                .andExpect(jsonPath("$.name", Matchers.equalTo("name1")));
+    }
+
+
 
 }
